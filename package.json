@@ -1,0 +1,26 @@
+{
+  "name": "raphael-test",
+  "version": "0.1.0",
+  "description": "This is a test of Paper.js library.",
+  "homepage": "https://github.com/rodrigo-morais/paper-test",
+  "main": "./index.html",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigo-morais/paper-test.git"
+  },
+  "keywords": [
+    "Raphael.js",
+    "vector",
+    "drawing"
+  ],
+  "author": "Rodrigo Morais",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rodrigo-morais/paper-test/issues"
+  },
+  "devDependencies": {
+  }
+}

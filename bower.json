@@ -1,0 +1,32 @@
+{
+  "name": "paper-test",
+  "version": "0.1.0",
+  "homepage": "",
+  "authors": [
+    "Rodrigo Morais"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rodrigo-morais/paper-test"
+  },
+  "description": "This is a test of Paper.js library.",
+  "main": "./index.html",
+  "keywords": [
+    "Raphael.js",
+    "vector",
+    "drawing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "component",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Gruntfile.js"
+  ],
+  "devDependencies": {
+    "bootstrap": "~3.3.5",
+    "paper": "~0.9.23"
+  }
+}
