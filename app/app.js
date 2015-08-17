@@ -1,6 +1,8 @@
 'use strict';
 
-var canvas;
+var canvas,
+    element,
+    tools;
 
 var configCanvas = function(){
   var height = window.innerHeight * 0.9,
@@ -15,6 +17,14 @@ var configCanvas = function(){
     .width(width);
 
   paper.setup(canvas);
+
+  tools = new Tool();
+
+  tools.onMouseMove = function(event) {
+    if(element){
+      element.position = event.point;
+    }
+  }
 };
 
 var createElement = function(){
@@ -45,6 +55,14 @@ var drawCircle = function(radius, left, top, backcolor, edge){
     x: left,
     y: top
   });
+
+  circle.onMouseDown = function(event) {
+    element = this;
+  };
+
+  circle.onMouseUp = function(event) {
+    element = undefined;
+  };
 };
 
 var drawRectangle = function(width, height, left, top, backcolor, edge){
@@ -60,6 +78,14 @@ var drawRectangle = function(width, height, left, top, backcolor, edge){
   path = new Path.Rectangle(rectangle);
   path.fillColor = backcolor;
   path.strokeColor = edge;
+
+  path.onMouseDown = function(event) {
+    element = this;
+  };
+
+  path.onMouseUp = function(event) {
+    element = undefined;
+  };
 };
 
 
