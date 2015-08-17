@@ -31,7 +31,7 @@ var createElement = function(){
     drawCircle(parseInt(radius), parseInt(left), parseInt(top), color, edge);
   }
   else if(type === 'Rectangle'){
-    createRectangle(left, top, color, edge, width, height, true);
+    drawRectangle(parseInt(width), parseInt(height), parseInt(left), parseInt(top), color, edge);
   }
 };
 
@@ -45,6 +45,21 @@ var drawCircle = function(radius, left, top, backcolor, edge){
     x: left,
     y: top
   });
+};
+
+var drawRectangle = function(width, height, left, top, backcolor, edge){
+  var rectangle, path;
+  
+  rectangle = new Rectangle({
+    width: width,
+    height: height,
+    x: left,
+    y: top
+  });
+
+  path = new Path.Rectangle(rectangle);
+  path.fillColor = backcolor;
+  path.strokeColor = edge;
 };
 
 
