@@ -24,16 +24,18 @@ var configCanvas = function(){
   tools = new Tool();
 
   tools.onMouseDown = function(event){
-    if(element === undefined){
-      if (freeHand) {
-        freeHand.selected = false;
-      }
+    if(event.event.type.indexOf('mouse') >= 0){
+      if(element === undefined){
+        if (freeHand) {
+          freeHand.selected = false;
+        }
 
-      freeHand = new Path({
-        segments: [event.point],
-        strokeColor: '#FFFFFF',
-        strokeWidth: 10
-      });
+        freeHand = new Path({
+          segments: [event.point],
+          strokeColor: '#FFFFFF',
+          strokeWidth: 10
+        });
+      }
     }
   }
 
@@ -47,12 +49,14 @@ var configCanvas = function(){
   }
 
   tools.onMouseUp = function(event){
-    if(element === undefined){
-      freeHand.simplify(20);
-      frehand.closed = true;
-    }
-    else{
-      element = undefined;
+    if(event.event.type.indexOf('mouse') >= 0){
+      if(element === undefined && freeHand){
+        freeHand.simplify(20);
+        freeHand.closed = true;
+      }
+      else{
+        element = undefined;
+      }
     }
   }
 
@@ -183,6 +187,17 @@ $('.zoom').on('click', function(e){
 
   paper.view.center = initialCenter;
   paper.view.zoom = 1;
+});
+
+var myElement = document.getElementById('draw-area');
+var mc = new Hammer(myElement);
+
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+mc.on("panleft panright panup pandown tap press", function(ev) {
+    if(ev.pointerType === 'touch'){
+      console.log(ev.type +" gesture detected.");
+    }
 });
 
 paper.install(window);
