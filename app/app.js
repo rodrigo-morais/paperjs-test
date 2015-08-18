@@ -2,7 +2,8 @@
 
 var canvas,
     element,
-    tools;
+    tools,
+    freeHand;
 
 var configCanvas = function(){
   var height = window.innerHeight * 0.9,
@@ -20,9 +21,36 @@ var configCanvas = function(){
 
   tools = new Tool();
 
-  tools.onMouseMove = function(event) {
-    if(element){
+  tools.onMouseDown = function(event){
+    if(element === undefined){
+      if (freeHand) {
+        freeHand.selected = false;
+      }
+
+      freeHand = new Path({
+        segments: [event.point],
+        strokeColor: '#FFFFFF',
+        strokeWidth: 10
+      });
+    }
+  }
+
+  tools.onMouseDrag = function (event) {
+    if(element === undefined){
+      freeHand.add(event.point);
+    }
+    else{
       element.position = event.point;
+    }
+  }
+
+  tools.onMouseUp = function(event){
+    if(element === undefined){
+      freeHand.simplify(20);
+      frehand.closed = true;
+    }
+    else{
+      element = undefined;
     }
   }
 };
