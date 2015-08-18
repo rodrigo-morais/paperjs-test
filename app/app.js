@@ -4,7 +4,8 @@ var canvas,
     element,
     tools,
     freeHand,
-    rotation = false;
+    rotation = false,
+    initialCenter = 0;
 
 var configCanvas = function(){
   var height = window.innerHeight * 0.9,
@@ -54,6 +55,8 @@ var configCanvas = function(){
       element = undefined;
     }
   }
+
+  initialCenter = paper.view.center;
 };
 
 var createElement = function(){
@@ -110,7 +113,7 @@ var drawRectangle = function(width, height, left, top, backcolor, edge){
 
   path.onMouseDown = function(event) {
     if(rotation){
-      
+
       path.rotate(45);
     }
     element = this;
@@ -125,7 +128,7 @@ var drawRectangle = function(width, height, left, top, backcolor, edge){
 $('#color, #edge')
   .css('backgroundColor', '#FF0000');
 
-$('button').on('click', function(e){
+$('.create').on('click', function(e){
   e.preventDefault();
 
   createElement();
@@ -158,6 +161,28 @@ $('.rectangle').css('display', 'none');
 
 $('#rotation').on('change', function(){
   rotation = $($(this).bootstrapToggle()).is(':checked');
+});
+
+$('#draw-area').on('mousewheel', function(e){
+  var x = e.pageX - this.offsetLeft;
+  var y = e.pageY - this.offsetTop;
+  var point = new Point(x,y);
+
+  paper.view.center = point;
+
+  if(e.originalEvent.wheelDelta > 0){
+    paper.view.zoom = paper.view.zoom + 0.01;
+  }
+  else if(paper.view.zoom - 0.01 > 0){
+    paper.view.zoom = paper.view.zoom - 0.01;
+  }
+});
+
+$('.zoom').on('click', function(e){
+  e.preventDefault();
+
+  paper.view.center = initialCenter;
+  paper.view.zoom = 1;
 });
 
 paper.install(window);
