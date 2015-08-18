@@ -2,8 +2,10 @@
     <head>
         <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"><link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/bootstrap-toggle/css/bootstrap-toggle.min.css">
         <script src="vendor/jquery/dist/jquery.min.js"></script>
         <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendor/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
     </head>
     <body>
         <div class="row col-md-12 in">
@@ -56,6 +58,10 @@
                 <input type="number" class="form-control" id="height">
               </div>
               <button class="btn btn-default">Create</button>
+              <div class="form-group">
+                <label for="rotation">Rotation</label>
+                <input id="rotation" data-toggle="toggle" type="checkbox">
+              </div>
             </form>
         </div>
 

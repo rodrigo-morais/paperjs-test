@@ -3,7 +3,8 @@
 var canvas,
     element,
     tools,
-    freeHand;
+    freeHand,
+    rotation = false;
 
 var configCanvas = function(){
   var height = window.innerHeight * 0.9,
@@ -108,6 +109,10 @@ var drawRectangle = function(width, height, left, top, backcolor, edge){
   path.strokeColor = edge;
 
   path.onMouseDown = function(event) {
+    if(rotation){
+      
+      path.rotate(45);
+    }
     element = this;
   };
 
@@ -150,6 +155,10 @@ $('#type').change(function() {
 
 $('.circle').css('display', 'inline-block');
 $('.rectangle').css('display', 'none');
+
+$('#rotation').on('change', function(){
+  rotation = $($(this).bootstrapToggle()).is(':checked');
+});
 
 paper.install(window);
 configCanvas();

@@ -27,6 +27,7 @@
   ],
   "devDependencies": {
     "bootstrap": "~3.3.5",
-    "paper": "~0.9.23"
+    "paper": "~0.9.23",
+    "bootstrap-toggle": "~2.2.1"
   }
 }
